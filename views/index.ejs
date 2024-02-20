@@ -1,0 +1,20 @@
+<%- include("partials/header.ejs") %>
+<div class="container pb-25">
+    <div class="row">
+        <div class="col-lg-10 postMainDiv">
+            <h1>The recent Post</h1>
+            <% for(let i =0 ;i< id.length; i++) {%>
+                <div class = "container px-3 postDiv">
+                        <h1><a href="/post/<%=id[i]%>" style="text-decoration: none; color: black;"><%=title[i]%></a></h1>
+                        <p><%= info[i].slice(0,500)%>...<a href="/post/<%=id[i]%>">read more</a></p>
+                </div>
+            <% } %>
+        </div>
+        <div class="col-lg-2 createButton">
+            <a href="/compose" style="text-decoration: none; color:#B6FFFA;"><button class="btn createButton btn-primary rounded-pill px-3" type="button" width=50 height=20>Create</button></a>
+        </div>
+
+    </div>
+
+</div>
+<%- include("partials/footer.ejs")  %>

@@ -1,0 +1,17 @@
+<%- include("partials/header.ejs") %>
+<div class="container">
+    <div class="row">
+     <div class="col-lg-10">   
+          <h1><%= data %></h1>
+          <p><%= info%></p>
+     </div>
+     <div class="col-lg-2 createButton">   
+        <ul class="ps-0">
+            <li><button class="btn btn-primary rounded-pill px-3 mb-2" type="button"><a href="/post/<%=id%>/delete" style="text-decoration: none; color:#B6FFFA;">Delete</a></button></li>
+            <li><button class="btn btn-primary rounded-pill px-4 mb-2" type="button"><a href="/post/<%=id%>/edit" style="text-decoration: none; color:#B6FFFA;">Edit</a></button></li>
+        </ul>    
+    </div>
+</div>
+
+</div>
+<%-include("partials/footer.ejs")%>

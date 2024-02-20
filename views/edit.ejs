@@ -1,0 +1,16 @@
+
+<%-include("partials/header.ejs")%>
+<div class="container">
+    <form action="/post/<%=id%>/edit" method="post">
+        <label for="" class="mb-2">Title</label>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Title of your post" aria-label="Username"name="title" aria-describedby="basic-addon1" value="<%=Titles%>">
+        </div>
+        <label for="" class="mb-2">Content</label>
+        <div class="input-group">
+            <textarea class="form-control" aria-label="With textarea" cols="10" rows="10" placeholder="Enter your Post" name="info" ><%=Infos%></textarea>
+          </div>
+        <input class="btn btn-primary mt-4" type="submit" value="Make Changes">
+    </form>
+    </div>
+    <%- include("partials/footer.ejs") %>

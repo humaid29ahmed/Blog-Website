@@ -1,0 +1,19 @@
+<%- include("partials/header.ejs") %>
+<div class="container">
+<form action="/create" method="post" enctype="multipart/form-data">
+    <label for="" class="mb-2">Title</label>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Title of your post" aria-label="Username"name="title" aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group mb-3">
+        <label class="input-group-text" for="inputGroupFile01">Upload</label>
+        <input type="file" class="form-control" id="inputGroupFile01" name="avatar">
+    </div>
+    <label for="" class="mb-2">Content</label>
+    <div class="input-group">
+        <textarea class="form-control" aria-label="With textarea" cols="10" rows="10" placeholder="Enter your Post" name="info"></textarea>
+    </div>
+    <input class="btn btn-primary mt-4" type="submit" value="Publish">
+</form>
+</div>
+<%- include("partials/footer.ejs") %>

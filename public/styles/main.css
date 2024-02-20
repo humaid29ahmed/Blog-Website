@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+.body{
+    background-color: #80B3FF;
+    font-family: "Rubik", sans-serif;
+    font-style: normal;
+}
+
+.postMainDiv
+{
+    background-color: #98E4FF;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+}
+
+.mainFooter{
+    position: relative;
+    min-height: 100vh;
+}
+.spaceFooter{
+    padding-bottom: 70px;
+}
+.postDiv
+{
+    background-color: #687EFF;
+    border-radius: 10px;
+}
+.createButton{
+
+    text-align: center;
+}
+.navi{
+
+    background-color: #B6FFFA;
+
+}
+
+ul{
+    list-style-type: none;
+}
+
+header{
+
+    font-family : "Rubik", sans-serif;
+    font-style: normal;
+}
+
+footer{
+    position: absolute ;
+    width: 100%;
+    bottom:0
+}
