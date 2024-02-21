@@ -1,5 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
+import path from "path";
 import _ from "lodash";
 import multer from "multer";
 
@@ -7,9 +8,18 @@ const app = express();
 const port = 3000;
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
-const upload = multer({ dest: './public/images' })
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './public/images');
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now()+'-'+path.extname(file.originalname));
+  }
+});
+const upload = multer({ storage:storage });
 const data ={
     id:[0,1],
+    image:['Car.jpg','Humaid.jpeg'],
     title:["hello","Humaid"],
     info:["Hurray","I am a good Boy"],
 };
@@ -43,10 +53,12 @@ app.post("/create",upload.single('avatar'),(req,res)=>
 {
     console.log(req.body);
     data["id"].push(++data.id[len]);
+    data["image"].push(req.file.filename);
     data["title"].push(req.body["title"]);
     data["info"].push(req.body["info"]);
     console.log(data["id"]);
     console.log(req.file);
+    console.log(data["image"]);
     console.log(data["title"]);
     console.log(data["info"]);
     res.redirect("/");
@@ -60,7 +72,8 @@ app.get("/post/:title", (req,res)=>{
     {
     if(data.id[i] == (req.params.title))
     {
-      res.render("read.ejs", {data:data.title[i], info: data.info[i], use:_, id:data.id[i]});
+      console.log(data.image[i]);
+      res.render("read.ejs", {data:data.title[i], info: data.info[i], use:_, id:data.id[i],image:data.image[i]});
     }
   }
     
