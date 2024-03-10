@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import path from "path";
 import _ from "lodash";
 import multer from "multer";
+import fs from "fs";
 
 const app = express();
 const port = 3000;
@@ -10,7 +11,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, './public/images');
+    cb(null, './public/post/images');
   },
   filename: function (req, file, cb) {
     cb(null, Date.now()+'-'+path.extname(file.originalname));
@@ -51,16 +52,16 @@ res.render("compose.ejs");
 
 app.post("/create",upload.single('avatar'),(req,res)=>
 {
-    console.log(req.body);
+    // console.log(req.body);
     data["id"].push(++data.id[len]);
     data["image"].push(req.file.filename);
     data["title"].push(req.body["title"]);
     data["info"].push(req.body["info"]);
-    console.log(data["id"]);
-    console.log(req.file);
-    console.log(data["image"]);
-    console.log(data["title"]);
-    console.log(data["info"]);
+    // console.log(data["id"]);
+    // console.log(req.file);
+    // console.log(data["image"]);
+    // console.log(data["title"]);
+    // console.log(data["info"]);
     res.redirect("/");
 });
 
@@ -72,8 +73,8 @@ app.get("/post/:title", (req,res)=>{
     {
     if(data.id[i] == (req.params.title))
     {
-      console.log(data.image[i]);
-      res.render("read.ejs", {data:data.title[i], info: data.info[i], use:_, id:data.id[i],image:data.image[i]});
+      // console.log(data.image[i]);
+      res.render("read.ejs", {data:data.title[i], info: data.info[i], use:_, id:data.id[i],images:data.image[i]});
     }
   }
     
@@ -88,6 +89,25 @@ app.get("/post/:title/delete", (req,res)=>{
       data["id"].splice(i,1);
       data["title"].splice(i,1);
       data["info"].splice(i,1);
+       fs.unlink(`./public/post/images/${data.image[i]}`, (err,fd) => {
+        if (err) {
+          console.error(err);
+        } else {
+          console.log('File is deleted.');
+        }
+        console.log(fd);
+        // fs.close(fd,(err)=>{
+        //   if(err)
+        //   {
+        //   console.error("Failed to close file", err); 
+        //   }
+        //   else { 
+        //     console.log("File Closed successfully");
+        //   }
+          
+        // });
+      });
+   
     }
   }
 
@@ -111,7 +131,7 @@ app.get("/post/:title/edit",(req,res)=>{
       };
     }
   }
-  console.log(editData["Titles"]);
+  // console.log(editData["Titles"]);
   res.render("edit.ejs", editData);
 
 });

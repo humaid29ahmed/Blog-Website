@@ -6,6 +6,20 @@
     font-style: normal;
 }
 
+.read-info {
+
+    display: flex;
+    justify-content: center;
+}
+
+.read-info img{
+    width: 600px;
+    height: 450px;
+    border-radius: 25px;
+    border: 10px solid #687EFF;
+    margin: 50px 0;
+}
+
 .postMainDiv
 {
     background-color: #98E4FF;
